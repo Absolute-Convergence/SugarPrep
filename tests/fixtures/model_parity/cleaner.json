@@ -1,0 +1,121 @@
+{
+  "schema_version": "sugarprep.behavior_specimen.cleaner.v1",
+  "model": {
+    "model_id": "qwen35-4b-cleaner-sft-v1-full",
+    "role": "cleaner",
+    "adapter_weights_sha256": "3C6F269E9FD62AA4F02F00C1ABF089957A98C1A6380D72141BC1C72AF45536A7",
+    "historical_validation": {
+      "accepted": 232,
+      "cases": 233,
+      "known_miss": "cleaner_p019_v003"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "retained-cleaner-execute",
+      "evidence_kind": "retained_successful_runtime_capture",
+      "source_sha256": "59eaff5de5717ff81a1be1d7dfbaf67e56b9113f8e7e23cd3f0af4fcc15bba88",
+      "context": {
+        "schema_version": "sugarprep.cleaner_curriculum_context.v1",
+        "user_request": "Repair this temporal CSV enough for profiling while preserving rows unless a tool quarantines them.",
+        "source_preview": [
+          "Date,Close,Volume",
+          "2026-01-01,101,1200",
+          "2026-01-02,104,1400",
+          "2026-01-03,102,900"
+        ],
+        "observed_issues": ["clean_parseable_table"]
+      },
+      "response": {
+        "version": "sugarprep.cleaner_tool_plan.v1",
+        "plan_id": "baseline-plan",
+        "stop_reason": "execute",
+        "tool_calls": [
+          {
+            "call_id": "detect-001",
+            "tool_name": "detect_file_format",
+            "arguments": {},
+            "purpose": "Apply deterministic detect_file_format repair step.",
+            "preconditions": [],
+            "metadata": {}
+          },
+          {
+            "call_id": "normalize-002",
+            "tool_name": "normalize_column_names",
+            "arguments": {"header_mapping": ["Date", "close", "volume"]},
+            "purpose": "Apply deterministic normalize_column_names repair step.",
+            "preconditions": [],
+            "metadata": {}
+          },
+          {
+            "call_id": "validate-003",
+            "tool_name": "validate_parseable_table",
+            "arguments": {},
+            "purpose": "Apply deterministic validate_parseable_table repair step.",
+            "preconditions": [],
+            "metadata": {}
+          }
+        ],
+        "unknowns": [],
+        "warnings": [],
+        "diagnostics": {
+          "difficulty_tags": ["clean-baseline"],
+          "family": "baseline",
+          "pattern_id": "baseline"
+        },
+        "metadata": {"model": "qwen35-4b-cleaner-sft-v1-full"}
+      },
+      "source_csv": "Date,Close,Volume\n2026-01-01,101,1200\n2026-01-02,104,1400\n2026-01-03,102,900\n",
+      "expected_output_csv": "Date,Close,Volume\n2026-01-01,101,1200\n2026-01-02,104,1400\n2026-01-03,102,900\n"
+    },
+    {
+      "case_id": "retained-cleaner-needs-user-input",
+      "evidence_kind": "sealed_reviewed_stop_boundary",
+      "source_sha256": "6437f74586b4600e6313fdda20d614b58b55a0be8485a921d2525f5074dd4b82",
+      "context": {
+        "profile_id": "promotion-ambiguous-header",
+        "headers": ["Column 1", "Column 2", "Column 3"],
+        "row_count": 4,
+        "user_goal": "Prepare the intended table without guessing its header.",
+        "observed_issues": ["Two rows are plausible table headers"],
+        "user_constraints": ["Ask which table is intended"]
+      },
+      "response": {
+        "version": "sugarprep.cleaner_tool_plan.v1",
+        "plan_id": "promotion-ambiguous-header",
+        "stop_reason": "needs_user_input",
+        "tool_calls": [],
+        "unknowns": ["Select the intended table header before preparation."],
+        "warnings": [],
+        "diagnostics": {},
+        "metadata": {}
+      }
+    },
+    {
+      "case_id": "retained-cleaner-cannot-repair",
+      "evidence_kind": "sealed_reviewed_stop_boundary",
+      "source_sha256": "4b93c22583582dd9ad15152fbeec6afd7eed82450f5332371e634b36d62a6810",
+      "context": {
+        "profile_id": "promotion-corrupt-quoting",
+        "headers": ["raw_field_1", "raw_field_2"],
+        "row_count": 2,
+        "user_goal": "Recover trustworthy rows without inventing quote boundaries.",
+        "observed_issues": ["Malformed quoting consumes row boundaries"],
+        "user_constraints": ["Do not infer missing quote positions"]
+      },
+      "response": {
+        "version": "sugarprep.cleaner_tool_plan.v1",
+        "plan_id": "promotion-corrupt-quoting",
+        "stop_reason": "cannot_repair",
+        "tool_calls": [],
+        "unknowns": [],
+        "warnings": [],
+        "diagnostics": {
+          "reason_code": "corrupt_quoting",
+          "detail": "Deterministic CSV record boundaries cannot be recovered."
+        },
+        "metadata": {}
+      }
+    }
+  ]
+}

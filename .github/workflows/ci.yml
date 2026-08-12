@@ -1,0 +1,55 @@
+name: SugarPrep CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install runtime development dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+
+      - name: Run runtime tests
+        run: python -m pytest -q
+
+      - name: Run runtime lint and repository checks
+        run: |
+          python -m ruff check src tests tools
+          python tools/check_project_hygiene.py --fail-on warn
+          python tools/check_monoliths.py --fail-on high
+
+      - name: Build runtime wheel
+        run: python -m build --wheel --outdir dist/runtime .
+
+  distribution-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Install build frontend
+        run: python -m pip install --upgrade pip build
+
+      - name: Build the runtime distribution from clean source
+        run: python -m build --wheel --outdir dist/runtime .

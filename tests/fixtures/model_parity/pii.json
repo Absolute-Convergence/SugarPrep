@@ -1,0 +1,22 @@
+{
+  "schema_version": "sugarprep.behavior_specimen.pii.v1",
+  "model": {
+    "model_id": "sugarprep-pii-transformer-targeted-full-v0",
+    "role": "pii",
+    "model_weights_sha256": "C39E95DD5E548908122FAED45D81BF2541F1119109214E5D9335BB73E97E36E8"
+  },
+  "case_id": "retained-pii-span-and-mask",
+  "evidence_kind": "live_model_refresh",
+  "refreshed_on": "2026-08-12",
+  "min_score": 0.5,
+  "text": "Ada Lovelace can be reached at ada@example.com or 312-555-0199 in Chicago.",
+  "text_sha256": "2948ffad603965c57a34511d2b34e731886dbd487dae145ee66b7689cb34889a",
+  "spans": [
+    {"start": 0, "end": 3, "text": "Ada", "kind": "first_name", "score": 0.9963446259498596},
+    {"start": 4, "end": 12, "text": "Lovelace", "kind": "last_name", "score": 0.999016523361206},
+    {"start": 31, "end": 46, "text": "ada@example.com", "kind": "email", "score": 0.9928611516952515},
+    {"start": 50, "end": 62, "text": "312-555-0199", "kind": "phone_number", "score": 0.992180347442627},
+    {"start": 66, "end": 73, "text": "Chicago", "kind": "city", "score": 0.9985997080802917}
+  ],
+  "expected_masked_text": "[masked first_name] [masked last_name] can be reached at [masked email] or [masked phone] in [masked city]."
+}

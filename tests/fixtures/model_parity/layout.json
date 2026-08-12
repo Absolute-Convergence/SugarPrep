@@ -1,0 +1,78 @@
+{
+  "schema_version": "sugarprep.behavior_specimen.layout.v1",
+  "model": {
+    "model_id": "gemma3-270m-temporal-v1",
+    "role": "layout",
+    "artifact_kind": "promoted_lora_adapter",
+    "adapter_weights_sha256": "2B4C5551D6141C86996969CEB01BDC821BBF7B3225819F22BE376A6DCDB6A4F8",
+    "base_weights_sha256": "ABB58EB73AECE5163624090D5383C59CBCDB9E9539EC84CB864F74386C4B21D5"
+  },
+  "case_id": "retained-gemma-indexed-layout",
+  "evidence": {
+    "retained_artifact_created_on": "2026-07-02",
+    "live_lora_refresh_on": "2026-08-12",
+    "live_lora_outcome": "seven assignments recovered to the expected typed layout",
+    "prompt_transport": "completion",
+    "gguf_required": false
+  },
+  "source_sha256": "08cb90570617e8d4c496cf9b4ced36dd35be2596f48a91721771f55b08f2c1ad",
+  "profile": {
+    "source_path": "local dataset",
+    "source_sha256": "08cb90570617e8d4c496cf9b4ced36dd35be2596f48a91721771f55b08f2c1ad",
+    "profile_mode": "full",
+    "profiled_row_count": 3,
+    "source_row_count": 3,
+    "row_count": 3,
+    "headers": ["Step", "Close", "Volume"],
+    "value_column_candidates": ["Step", "Close", "Volume"],
+    "time_axis_candidates": [],
+    "generated_index_recommended": true,
+    "columns": [
+      {
+        "name": "Step",
+        "numeric_success_count": 3,
+        "date_like_count": 0,
+        "sugarbot_value_candidate": true,
+        "likely_date_axis": false,
+        "distinct_examples": ["1", "2", "3"]
+      },
+      {
+        "name": "Close",
+        "numeric_success_count": 3,
+        "date_like_count": 0,
+        "sugarbot_value_candidate": true,
+        "likely_date_axis": false,
+        "distinct_examples": ["101", "104", "102"]
+      },
+      {
+        "name": "Volume",
+        "numeric_success_count": 3,
+        "date_like_count": 0,
+        "sugarbot_value_candidate": true,
+        "likely_date_axis": false,
+        "distinct_examples": ["1200", "1400", "900"]
+      }
+    ]
+  },
+  "guidance": {
+    "guidance": {
+      "axis_intent": {
+        "time": {"column": "Step", "kind": "Index"},
+        "entity": {"mode": "none"}
+      },
+      "value_intent": {"primary": "Close", "include": ["Close"], "exclude": []},
+      "metadata_policy": {"preserve": []}
+    },
+    "expected": {}
+  },
+  "raw_response": "time_col = V1\ntime_kind = Index\nentity_col = none\nprimary_value_col = V2\nvalue_cols = V2\nmetadata_cols = []\nforbidden_value_cols = []\nRules:\n1. Use none for entity_col when there is no entity axis.\n2. Use comma-separated labels for value_cols, metadata_cols, and forbidden_value_cols.\n3. Use time_kind text directly, not a label.\n4. Do not output examples, explanations, JSON, or repeated instructions. Direct indexed field plan:\ntime_col = V1\ntime_kind = Index\nentity_col = none\nprimary_value_col = V2\nvalue_cols = V2\nmetadata_cols = []\nforbidden_value_cols = []\nColumn label table:\nV1 = Step | value_candidate=yes | likely_date_axis=no | examples=[1, 2, 3]\nV2 = Close | value_candidate=yes | likely_date_axis=no | examples=[101, 104, 102]\nV3 = Volume | value_candidate",
+  "expected_prediction": {
+    "time_col": "Step",
+    "time_kind": "Index",
+    "entity_col": null,
+    "primary_value_col": "Close",
+    "value_cols": ["Close"],
+    "metadata_cols": [],
+    "forbidden_value_cols": []
+  }
+}
