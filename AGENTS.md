@@ -4,8 +4,10 @@ Last updated: 2026-08-12.
 
 ## Current working point
 
-- Follow `SugarPrepRefactor.md`; it is the controlling successful-behavior
-  migration plan.
+- Use `docs/development/migration-accomplishments.md` as the completed migration
+  record. Current source contracts are authoritative for runtime behavior.
+- The finished `SugarPrepRefactor.md` plan is historical material archived in
+  the ignored local `_migration/legacy_sugarprep` folder, not a live plan.
 - Old SugarPrep is experimental reference material, not the target
   implementation.
 - Preserve the observable successful behavior of exactly three models: Qwen
@@ -31,8 +33,7 @@ Last updated: 2026-08-12.
   publishable quickstart creates an accepted seven-file SugarBot package, and
   the isolated wheel contains no legacy/training source, model assets,
   generated data, or private drive paths.
-- The local migration is complete. The repository is connected to the existing
-  GitHub `origin/main`; current work is the SugarPrep repository baseline.
+- The local migration and initial GitHub repository baseline are complete.
   External SugarDeploy composition remains separate user-directed work.
 
 ## Boundaries

@@ -62,7 +62,6 @@ ALLOWED_TOP_LEVEL_FILES = {
     "LICENSE",
     "MANIFEST.in",
     "README.md",
-    "SugarPrepRefactor.md",
     "pyproject.toml",
     "roadmap.md",
 }

@@ -24,10 +24,17 @@ final validation, and records model-candidate, tool-argument, input-hash, and
 output-hash evidence. Live parity now passes for Qwen execute and both stop
 outcomes, Gemma's exact typed layout, and PII spans plus masked copy. Package
 readiness also passes, and every old implementation/reference copy is
-contained under `_migration/legacy_sugarprep` as one non-importable disposable
-folder.
+contained in the local migration worktree under `_migration/legacy_sugarprep`
+as one ignored, non-importable disposable folder.
 
-[SugarPrepRefactor.md](SugarPrepRefactor.md) is the controlling plan.
+The source-backed
+[migration accomplishment record](docs/development/migration-accomplishments.md)
+describes what the new repository preserved and how the completed runtime now
+works. The finished historical `SugarPrepRefactor.md` plan has been moved out
+of the live repository root and archived locally at
+`_migration/legacy_sugarprep/SugarPrepRefactor.md`. Because `_migration` is
+deliberately ignored, fresh clones contain the accomplishment record, not the
+historical working plan.
 
 ## Current runtime commands
 
@@ -48,12 +55,11 @@ SugarPrep/
 |-- src/sugarprep/       # runtime package
 |-- tests/               # runtime unit, integration, and contract tests
 |-- examples/            # publishable deterministic example
-|-- docs/                # retained architecture and integration contracts
+|-- docs/                # migration completion and integration contracts
 |-- tools/               # repository-maintenance checks only
-|-- _migration/
-|   `-- legacy_sugarprep/ # all old SugarPrep reference material, isolated
+|-- _migration/          # ignored local-only migration holdings
+|   `-- legacy_sugarprep/ # old reference material and completed plan
 |-- pyproject.toml
-|-- SugarPrepRefactor.md
 `-- LICENSE
 ```
 
@@ -61,11 +67,12 @@ There is no generic training distribution. Historical model-build and research
 code does not move into the runtime merely because it contributed to a
 successful artifact.
 
-Legacy consolidation is complete: old staged runtime/model copies, deployment
-and recovery ZIPs, extracted SugarBot CLI assets, and legacy namespace tests
-are all contained beneath `_migration/legacy_sugarprep`. Active model artifacts
-and path-scrubbed parity evidence remain outside it because they are inputs to
-the clean implementation, not disposable old code.
+Legacy consolidation is complete in the retained local worktree: old staged
+runtime/model copies, deployment and recovery ZIPs, extracted SugarBot CLI
+assets, legacy namespace tests, and the completed refactor plan are all
+contained beneath `_migration/legacy_sugarprep`. Active model artifacts and
+path-scrubbed parity evidence remain outside it because they are inputs to the
+clean implementation, not disposable old code.
 
 The 2026-08-12 local readiness gate also built and installed the runtime wheel,
 ran the published quickstart to an accepted seven-file SugarBot package, and

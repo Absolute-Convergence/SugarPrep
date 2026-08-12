@@ -3,7 +3,13 @@
 Recorded: 2026-08-09
 Scope: SugarPrep only
 
-This is the recovery point for the clean-break refactor defined in [../../SugarPrepRefactor.md](../../SugarPrepRefactor.md). It records behavior and source evidence; it does not make legacy imports, commands, compatibility packages, or wheel contents part of the target architecture.
+This is the recovery point created for the clean-break refactor. The completed
+historical plan is now archived in the ignored local
+`_migration/legacy_sugarprep` folder. The published
+[migration accomplishment record](migration-accomplishments.md) describes the
+result. This baseline records behavior and source evidence; it does not make
+legacy imports, commands, compatibility packages, or wheel contents part of
+the target architecture.
 
 ## Recovery archive
 

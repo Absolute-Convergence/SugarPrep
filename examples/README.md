@@ -13,6 +13,11 @@ passing result -> ArtifactBundleDraft -> BundleValidationReport
 passing draft + explicit acceptance -> ArtifactWriter.commit -> ArtifactBundle
 ```
 
-The existing `quickstart/` files and legacy CLI commands are retained as current-state behavioral fixtures during the refactor. They may change when the new workflow and CLI entry points land. Model-backed examples belong in explicitly optional lanes and must state their local runtime requirements.
+The `quickstart/` files exercise the current deterministic recipe, plan,
+candidate, validation, and explicit-acceptance path. Model-backed examples
+belong in explicitly optional lanes and must state their local runtime
+requirements.
 
-See [../SugarPrepRefactor.md](../SugarPrepRefactor.md) for the target API and migration checkpoints.
+See the
+[migration accomplishment record](../docs/development/migration-accomplishments.md)
+for the preserved behavior and completed runtime architecture.
