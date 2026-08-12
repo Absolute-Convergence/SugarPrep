@@ -1,0 +1,27 @@
+{
+  "required_files": [
+    "data.csv",
+    "layout.json",
+    "manifest.json",
+    "profile.json",
+    "compiled-plan.json",
+    "warnings.json",
+    "rejects.csv"
+  ],
+  "manifest_artifacts": {
+    "data_csv": "data.csv",
+    "layout_json": "layout.json",
+    "manifest_json": "manifest.json",
+    "profile_json": "profile.json",
+    "compiled_plan_json": "compiled-plan.json",
+    "warnings_json": "warnings.json",
+    "rejects_csv": "rejects.csv"
+  },
+  "rejects_header": [
+    "source_row",
+    "output_column",
+    "source_column",
+    "transform",
+    "reason"
+  ]
+}

@@ -1,0 +1,76 @@
+"""Model-specific candidate contracts for the three retained artifacts."""
+
+from sugarprep.inference.cleaner import (
+    CLEANER_CONTEXT_VERSION,
+    CLEANER_RUNNER_REQUEST_VERSION,
+    CLEANER_STOP_REASONS,
+    CLEANER_TOOL_NAMES,
+    CLEANER_TOOL_PLAN_VERSION,
+    CleanerInferenceService,
+    CleanerPlanCandidate,
+    CleanerPlanError,
+    CleanerPlannedToolCall,
+    CleanerToolPlan,
+    build_cleaner_messages,
+    build_cleaner_runner_request,
+    parse_cleaner_tool_plan_response,
+)
+from sugarprep.inference.layout import (
+    LAYOUT_RUNNER_REQUEST_VERSION,
+    LayoutCandidate,
+    LayoutInferenceError,
+    LayoutInferenceService,
+    build_indexed_layout_request,
+    indexed_completion_prompt,
+)
+from sugarprep.inference.layout_contract import (
+    SUPPORTED_TIME_KINDS,
+    TYPED_LAYOUT_REQUIRED_FIELDS,
+    TypedLayoutParseError,
+    TypedLayoutPrediction,
+    parse_typed_layout_prediction,
+    parse_typed_layout_response,
+    validate_typed_layout_payload,
+)
+
+from sugarprep.inference.pii import (
+    PiiInferenceContractError,
+    PiiInferenceService,
+    PiiSpanCandidate,
+    PiiSpanProvider,
+    PiiTextCandidate,
+)
+
+__all__ = [
+    "CLEANER_CONTEXT_VERSION",
+    "CLEANER_RUNNER_REQUEST_VERSION",
+    "CLEANER_STOP_REASONS",
+    "CLEANER_TOOL_NAMES",
+    "CLEANER_TOOL_PLAN_VERSION",
+    "CleanerInferenceService",
+    "CleanerPlanCandidate",
+    "CleanerPlanError",
+    "CleanerPlannedToolCall",
+    "CleanerToolPlan",
+    "LAYOUT_RUNNER_REQUEST_VERSION",
+    "LayoutCandidate",
+    "LayoutInferenceError",
+    "LayoutInferenceService",
+    "PiiInferenceContractError",
+    "PiiInferenceService",
+    "PiiSpanCandidate",
+    "PiiSpanProvider",
+    "PiiTextCandidate",
+    "SUPPORTED_TIME_KINDS",
+    "TYPED_LAYOUT_REQUIRED_FIELDS",
+    "TypedLayoutParseError",
+    "TypedLayoutPrediction",
+    "build_cleaner_messages",
+    "build_cleaner_runner_request",
+    "build_indexed_layout_request",
+    "indexed_completion_prompt",
+    "parse_cleaner_tool_plan_response",
+    "parse_typed_layout_prediction",
+    "parse_typed_layout_response",
+    "validate_typed_layout_payload",
+]

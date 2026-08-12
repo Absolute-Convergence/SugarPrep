@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sugarprep"
+version = "0.1.0"
+description = "Local-first deterministic data preparation and PII masking for SugarStudio"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Absolute-Convergence" },
+]
+license = "LicenseRef-Proprietary"
+keywords = [
+  "data preparation",
+  "tabular data",
+  "local inference",
+  "data validation",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "PyYAML>=6.0,<7",
+]
+
+[project.optional-dependencies]
+pii = [
+  "torch>=2.0",
+  "transformers>=4.40",
+]
+dev = [
+  "build>=1.2",
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+sugarprep = "sugarprep.cli.main:main"
+
+[project.urls]
+Homepage = "https://github.com/Absolute-Convergence/SugarPrep"
+Issues = "https://github.com/Absolute-Convergence/SugarPrep/issues"
+Source = "https://github.com/Absolute-Convergence/SugarPrep"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sugarprep*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+extend-exclude = ["_migration"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.lint.per-file-ignores]
+"tools/**/*.py" = ["E402"]

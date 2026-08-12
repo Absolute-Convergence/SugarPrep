@@ -1,0 +1,1 @@
+"""SugarPrep domain contract tests."""

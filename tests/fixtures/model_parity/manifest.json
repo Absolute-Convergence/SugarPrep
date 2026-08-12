@@ -1,0 +1,26 @@
+{
+  "schema_version": "sugarprep.behavior_specimen_manifest.v1",
+  "revision": 1,
+  "frozen_on": "2026-08-12",
+  "purpose": "Freeze the observable successful behavior of the three retained SugarPrep models.",
+  "specimens": [
+    {
+      "role": "cleaner",
+      "file": "cleaner.json",
+      "sha256": "97F7415A35014A4F701E3B9615E25D552E1DF176275C34AC5898A2EA22CB68D3",
+      "required_outcomes": ["execute", "needs_user_input", "cannot_repair"]
+    },
+    {
+      "role": "layout",
+      "file": "layout.json",
+      "sha256": "01AD14F209DD7DA89A607D81D7A53BDA2581D04D3CAFA2618641A4ECF6A9DA29",
+      "required_outcomes": ["valid_typed_layout"]
+    },
+    {
+      "role": "pii",
+      "file": "pii.json",
+      "sha256": "06154B15AD3724C6B2CC4B6F30DD96B19264F2CAE8CEAF1E15983DBC6B1DDAEA",
+      "required_outcomes": ["source_bound_spans", "masked_copy"]
+    }
+  ]
+}
